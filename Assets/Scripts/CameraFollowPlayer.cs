@@ -12,7 +12,6 @@ public class CameraFollowPlayer : MonoBehaviour
     [SerializeField] private Transform player;
 
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 desiredPosition = player.position + offset;

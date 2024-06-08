@@ -6,35 +6,52 @@ public class PlayerDash : MonoBehaviour
 {
     public Rigidbody2D rbPlayer;
 
-    public float dashForce = 10f;
+    public float dashForce = 0.05f;
     private Vector2 dashDirection;
 
+    private bool _isDashing = false;
+    public bool IsDashing { get { return _isDashing; } }
+    public float dashCooldown = 0.1f;
 
+    private float speed;
 
+    PlayerStamina playerStamina;
+
+    
     void Start()
     {
         rbPlayer = GetComponent<Rigidbody2D>();
+        playerStamina = GetComponent<PlayerStamina>();
     }
 
     void FixedUpdate()
     {
+        speed = rbPlayer.velocity.magnitude;
 
         dashDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
 
         float angle = Vector2.Angle(rbPlayer.velocity.normalized, dashDirection);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !_isDashing && playerStamina.CurrentStamina > 3.0f)
         {
             PerformDash(angle);
-        }
+            _isDashing = true;
+            Invoke("ResetDash", dashCooldown);
+        } 
     }
 
     private void PerformDash(float angle)
     {
-        float speedFactor = angle > 150.0f ? 0.3f : rbPlayer.velocity.magnitude;
-        speedFactor = angle < 10.0f ? dashForce : rbPlayer.velocity.magnitude;
-        speedFactor = Mathf.Max(speedFactor, 0.3f);
+        if (angle < 0.5f)
+        {
+            angle = (1 / speed) * 50;
+            print("angle: " + angle);
+        }
+        rbPlayer.AddForce(dashDirection * dashForce * angle, ForceMode2D.Impulse);
+    }
 
-        rbPlayer.AddForce(dashDirection * dashForce / speedFactor, ForceMode2D.Impulse);
+    private void ResetDash()
+    {
+        _isDashing = false;
     }
 }
