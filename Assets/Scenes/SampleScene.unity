@@ -1923,6 +1923,7 @@ GameObject:
   - component: {fileID: 1229926560583359919}
   - component: {fileID: 7240034057035601186}
   - component: {fileID: 7240034057035601185}
+  - component: {fileID: 7240034057035601188}
   - component: {fileID: 7240034057035601187}
   m_Layer: 6
   m_Name: Player
@@ -1959,7 +1960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbPlayer: {fileID: 0}
-  dashForce: 0.03
+  dashForce: 4
   dashCooldown: 0.1
 --- !u!114 &7240034057035601186
 MonoBehaviour:
@@ -1991,6 +1992,20 @@ MonoBehaviour:
   staminaBar: {fileID: 518754174}
   loseStaminaCooldown: 0.1
   flagStaminaCooldown: 0
+--- !u!114 &7240034057035601188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233718452450559082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f125ce9849eafa39c67b38d2972d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rbPlayer: {fileID: 0}
+  brakeForce: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

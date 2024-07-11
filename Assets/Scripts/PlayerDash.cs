@@ -42,12 +42,14 @@ public class PlayerDash : MonoBehaviour
 
     private void PerformDash(float angle)
     {
-        if (angle < 0.5f)
-        {
-            angle = (1 / speed) * 50;
-            print("angle: " + angle);
-        }
-        rbPlayer.AddForce(dashDirection * dashForce * angle, ForceMode2D.Impulse);
+        // if (angle < 0.5f)
+        // {
+        //     angle = (1 / speed) * 50;
+        //     print("angle: " + angle);
+        // }
+        // rbPlayer.AddForce(dashDirection * dashForce * angle, ForceMode2D.Impulse);
+
+        rbPlayer.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
     }
 
     private void ResetDash()
